@@ -40,7 +40,7 @@ function [mGrid, vXVector, vYVector, vUsedNodes] = ex_selectgrid(hFigure, fSpaci
             while (nButton == 1) || (nButton == 112)
                 [fX, fY, nButton] = ginput(1);
                 hMarker = plot(fX, fY, '+k');
-                set(hMarker, 'MarkerSize', [6], 'LineWidth', [1.0]);
+                set(hMarker, 'MarkerSize', 6, 'LineWidth', [1.0]);
                 vX = [vX; fX];
                 vY = [vY; fY];
             end
@@ -69,7 +69,7 @@ function [mGrid, vXVector, vYVector, vUsedNodes] = ex_selectgrid(hFigure, fSpaci
         
         % Plot the grid points finally
         figure(hFigure);
-        plot(mGrid(:,1), mGrid(:,2), '+k',  'MarkerSize', [8], 'LineWidth', [1]);
+        plot(mGrid(:,1), mGrid(:,2), '+k',  'MarkerSize', 8, 'LineWidth', 1);
         drawnow;
     catch ME
         warning(ME.message)

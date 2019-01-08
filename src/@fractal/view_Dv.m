@@ -198,7 +198,7 @@ function view_Dv()
         ZG=ZmapGlobal.Data;
         ZG.hold_state=false;
         ic = 1;
-        org = [5];
+        org = 5;
         startfd(5);
     end
     
@@ -209,7 +209,7 @@ function view_Dv()
         ZG=ZmapGlobal.Data;
         ZG.hold_state=false;
         icCircl = 2;
-        org = [5];
+        org = 5;
         startfd(5);
     end
     
@@ -220,7 +220,7 @@ function view_Dv()
         ZG=ZmapGlobal.Data;
         ZG.hold_state=true;
         ic = 1;
-        org = [5];
+        org = 5;
         startfd(5);
     end
     

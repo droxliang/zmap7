@@ -56,11 +56,11 @@ if nargin == 1  % LAUNCH GUI
 
   if get(handles.radNumber, 'Value') == 1
     set(handles.txtNumber, 'Enable', 'on');
-    set(handles.radRadius, 'Value', [0]);
+    set(handles.radRadius, 'Value', 0);
     set(handles.txtRadius, 'Enable', 'off');
   else
     set(handles.txtNumber, 'Enable', 'off');
-    set(handles.radRadius, 'Value', [1]);
+    set(handles.radRadius, 'Value', 1);
     set(handles.txtRadius, 'Enable', 'on');
   end
 
@@ -98,11 +98,11 @@ function varargout = radNumber_Callback(h, eventdata, handles, varargin)
 
 if get(handles.radNumber, 'Value') == 1
   set(handles.txtNumber, 'Enable', 'on');
-  set(handles.radRadius, 'Value', [0]);
+  set(handles.radRadius, 'Value', 0);
   set(handles.txtRadius, 'Enable', 'off');
 else
   set(handles.txtNumber, 'Enable', 'off');
-  set(handles.radRadius, 'Value', [1]);
+  set(handles.radRadius, 'Value', 1);
   set(handles.txtRadius, 'Enable', 'on');
 end
 
@@ -111,11 +111,11 @@ function varargout = radRadius_Callback(h, eventdata, handles, varargin)
 
 if get(handles.radRadius, 'Value') == 1
   set(handles.txtRadius, 'Enable', 'on');
-  set(handles.radNumber, 'Value', [0]);
+  set(handles.radNumber, 'Value', 0);
   set(handles.txtNumber, 'Enable', 'off');
 else
   set(handles.txtRadius, 'Enable', 'off');
-  set(handles.radNumber, 'Value', [1]);
+  set(handles.radNumber, 'Value', 1);
   set(handles.txtNumber, 'Enable', 'on');
 end
 

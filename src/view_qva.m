@@ -281,7 +281,6 @@ function view_qva(lab1,valueMap)
     function callbackfun_009(mysrc,myevt)
 
         callback_tracker(mysrc,myevt,mfilename('fullpath'));
-        ;
         pause(1);
         re4 =valueMap;
         view_bva(lab1,valueMap);

@@ -72,7 +72,7 @@ function [params]=get_parameter
     params.fTstart              = 1994.5;            %  Start Time for z-Value calculation
     params.fT                   = 1997.2;                 % Time cut of years
     % time window length in years
-    % params.vTw=[4]';
+    % params.vTw=4';
     params.vTw                  = [2.5 ]';
     
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -148,7 +148,7 @@ function [params]=get_parameter
     params.vTbin            = [floor((params.fT-params.fTstart)/days(100))]';
     %params.vTbin=14;
     % No of Events per sample
-    params.vN               = [150]';
+    params.vN               = 150';
     params.nMinimumNumber   = 50;        % Minimum Number of events if working with
     % constant radius
     params.fRadius          = 80;               % Radius (if working with constant radius

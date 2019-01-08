@@ -113,7 +113,7 @@ function fdparain(gobut)
         callback_tracker(mysrc,myevt,mfilename('fullpath'));
         close;
         
-        org = [2];
+        org = 2;
         startfd(2);
     end
     

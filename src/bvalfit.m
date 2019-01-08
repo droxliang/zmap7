@@ -56,12 +56,12 @@ function bvalfit()
         
         l = ZG.newcat.Date > t1p(1) & ZG.newcat.Date < t2p(1) ;
         backg =  ZG.newcat.subset(l);
-        [bval,xt2] = hist(backg(:,6),(mima:0.1:maxmag));
+        [bval,~] = hist(backg(:,6),(mima:0.1:maxmag));
         bval = bval/td12;                      % normalization
         bvalsum = cumsum(bval);                        % N for M <=
         bvalsum3 = cumsum(bval(end:-1:1));    % N for M >= (counted backwards)
         magsteps_desc = (maxmag:-0.1:mima);
-        [cumux, xt] = hist(ZG.newcat.Date(l),t1p(1):days(ZG.bin_dur):t2p(1));
+        [cumux, ~] = hist(ZG.newcat.Date(l),t1p(1):days(ZG.bin_dur):t2p(1));
         
         l = ZG.newcat.Date > t3p(1) & ZG.newcat.Date < t4p(1) ;
         foreg = ZG.newcat.subset(l);
@@ -69,7 +69,7 @@ function bvalfit()
         bval2 = bval2/td34;                     % normallization
         bvalsum2 = cumsum(bval2);
         bvalsum4 = cumsum(bval2(end:-1:1));
-        [cumux2, xt] = hist(ZG.newcat.Date(l),t3p(1):days(ZG.bin_dur):t4p(1));
+        [cumux2, ~] = hist(ZG.newcat.Date(l),t3p(1):days(ZG.bin_dur):t4p(1));
         mean1 = mean(cumux);
         mean2 = mean(cumux2);
         var1 = cov(cumux);

@@ -83,8 +83,8 @@ function fdsphere()
     
     %clear sphere;
     
-    %org = [9];
-    org = [1];
+    %org = 9;
+    org = 1;
     startfd(1);
     
 end

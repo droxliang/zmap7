@@ -65,8 +65,8 @@ function fdtimin()
         callback_tracker(mysrc,myevt,mfilename('fullpath'));
         close;
         
-        gobut = [2];
-        org = [1];
+        gobut = 2;
+        org = 1;
         startfd(1,gobut);
     end
     

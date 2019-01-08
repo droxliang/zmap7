@@ -2,31 +2,42 @@
 fn=dir('*.m');
 fn={fn.name};
 A=checkcode(fn);
-z=struct('message',''); 
+a_is_empty = cellfun(@isempty,A);
+A(a_is_empty)=[];
+fn(a_is_empty)=[];
+fn=string(fn)';
+tb=table;
+tb.filename = fn;
 for n=1:numel(A)
-    for m=1:numel(A{n})
-        z(end+1).message=A{n}(m).message;
-    end
+    %theseMessages = string({A{n}.message});
+    tb.messages(n) = {string({A{n}.message})};
 end
-zc={z.message};
-zc=sort(zc);
-cnt = 0; issue={''}; 
-for c=1:numel(zc)
-    issueidx=numel(issue);
-    if strcmp(issue(end), zc{c})
-        cnt(issueidx)=cnt(issueidx)+1; 
-    else
-        issue{end+1}=zc{c}; 
-        cnt(end+1)=0;
-    end
+zc = categorical([tb.messages{:}]);
+
+cnt = containers.Map(categories(zc),zeros(size(categories(zc))));
+for c = zc
+    cnt(char(c))=cnt(char(c))+1;
 end
-[B, I] = sort(cnt,'descend');
-sortedcnt = cnt(I); sortedissues=issue(I);
+k=cnt.keys();
+v=cnt.values();
+v=[v{:}];
+for j = 1 : numel(v)
+    sorted_cats(j,1:2)={string(k{j}), v(j)};
+end
+sorted_cats=sortrows(sorted_cats,2,'descend');
+sortedcnt=[sorted_cats{:,2}];
+sortedissues=[sorted_cats{:,1}];
 for i=1:40
-    fprintf('%d : %s\n', sortedcnt(i), sortedissues{i});
+    fprintf('%d : %s\n  ', sortedcnt(i), sortedissues{i});
+    for r = 1:height(tb)
+        if any(string(sortedissues{i})==tb.messages{r})
+            fprintf(' %s ',tb.filename(r));
+        end
+    end
+    fprintf('\n')    
 end
 if ~exist('last_issue_count','var')
     last_issue_count=0;
 end
-fprintf('total issues: %d  [prev: %d]',sum(sortedcnt), last_issue_count)
+fprintf('total issues: %d  [prev: %d]\n\n',sum(sortedcnt), last_issue_count)
 last_issue_count = sum(sortedcnt);
