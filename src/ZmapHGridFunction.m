@@ -371,7 +371,7 @@ classdef ZmapHGridFunction < ZmapGridFunction
     end
     
     % assume dy is constant everywhere
-    dy = mean(min(diff(gr_s.Y)));
+    dy = mean(min(diff(gr_s.Y(:,:,1))));
     shifted_X = myX - repmat(dx_at_lat ./2, 1, size(myX,2)) ;
     shifted_Y = gr_s.Y-dy./2;
     
@@ -381,14 +381,14 @@ classdef ZmapHGridFunction < ZmapGridFunction
     %% because surfaces and patches are based on the lower-left corner, add col & row.
     
     % add row to top with same values as existing last (top)row
-    myresults(end+1,:)=myresults(end,:);
+    myresults(end+1,:,:)=myresults(end,:,:);
     shifted_X(end+1,:)=shifted_X(end,:);
     shifted_Y(end+1,:)=shifted_Y(end,:) + dy;
     
     % add column to end with same values as existing last (right) column
-    myresults(:,end+1)=myresults(:,end);
-    shifted_X(:,end+1)=shifted_X(:,end) + [dx_at_lat; dx_at_lat(end)];
-    shifted_Y(:,end+1)=shifted_Y(:,end);
+    myresults(:,end+1,:)=myresults(:,end,:);
+    shifted_X(:,end+1,:)=shifted_X(:,end,:) + [dx_at_lat(:,:,1); dx_at_lat(end)];
+    shifted_Y(:,end+1,:)=shifted_Y(:,end,:);
     
     pa=surf2patch(shifted_X,shifted_Y,zeros(size(shifted_X)),myresults);
     

@@ -192,13 +192,19 @@ classdef ZmapGrid
                 % 1st: FIGURE OUT ORIGIN POINT OF GRID
                 ax=findobj(gcf,'Tag','mainmap_ax');
                 if ~isempty(ax)
-                    xl = xlim(ax); yl=ylim(ax);
+                    xl = xlim(ax); yl=ylim(ax); zl = zlim(ax);
                 elseif isprop(varargin{1},'AbsoluteGridLimits')
                     xl=varargin{1}.AbsoluteGridLimits(1:2);
                     yl=varargin{1}.AbsoluteGridLimits(3:4);
+                    if numel(varargin{1}.AbsoluteGridLimits)==6
+                        zl=varargin{1}.AbsoluteGridLimits(5:6);
+                    else
+                        zl = [-5 50];
+                    end
                 else
                     xl=[-179.9999 180]; 
                     yl=[-90 90];
+                    zl=[-5 50];
                 end
                 minX=max([xl(1), -180]);
                 maxX=min([xl(2), 180]);
@@ -219,6 +225,14 @@ classdef ZmapGrid
                 
                 % 3rd: FIGURE OUT LIMITS
                 limsLonLatZ=[minX maxX ; minY maxY];
+                
+                if gridopt.GridType=="XYZ"
+                    
+                    lonLatZ0=[lonLatZ0, mean(zl)];
+                    deltasLonLatZ=[deltasLonLatZ, gridopt.dz];
+                    limsLonLatZ=[limsLonLatZ; zl];
+                end
+                
                 obj.Units = standardizeDistanceUnits(gridopt.horizUnits);
                 
                 obj.Origin=lonLatZ0;

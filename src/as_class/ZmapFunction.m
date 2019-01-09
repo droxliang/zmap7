@@ -185,11 +185,11 @@ classdef(Abstract) ZmapFunction < matlab.mixin.Copyable
             % each of these functions is defined in the subclass.
             % change DOIT behavior by redefining DOIT in the sublcass.
             obj.Calculate();
+            obj.ModifyGlobals();
+            obj.saveToDesktop();
             if obj.AutoShowPlots
                 obj.plot();
             end
-            obj.ModifyGlobals();
-            obj.saveToDesktop();
         end
         
         function  ModifyGlobals(obj)
