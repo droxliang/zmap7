@@ -66,10 +66,12 @@ function plot_base_events(obj, container, featurelist)
         Sz = SzFcn(obj.bigEvents.Magnitude);
         z  = obj.bigEvents.Depth;
     end
+    
+    ZG = ZmapGlobal.Data;
         
     bev=scatter(obj.map_axes, x, y, Sz,...
         'Tag', 'big events',...
-        'DisplayName', "Events "+char(8805)+" M" + ZmapGlobal.Data.CatalogOpts.BigEvents.MinMag,...
+        'DisplayName', strjoin(["Events ",char(8805)," M",string(ZmapGlobal.Data.CatalogOpts.BigEvents.MinMag)]),...
         'ZData', z);
     set_valid_properties(bev,bigEvOpt);
     
@@ -77,7 +79,6 @@ function plot_base_events(obj, container, featurelist)
     
     obj.map_axes.XLabel.String = 'Longitude';
     obj.map_axes.YLabel.String = 'Latitude';
-    ZG = ZmapGlobal.Data;
     
     
     wereLoaded = cellfun(@(x) ZG.features(x).WasLoaded , featurelist);

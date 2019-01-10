@@ -57,7 +57,7 @@ function tb = interpretFromTable(tb)
     Candidates.Longitude = "^lon.*";
     Candidates.Depth     = "^dep.*";
     Candidates.Magnitude = ["^mag$","^mags$","^magnitude$","^magnitudes$"];
-    Candidates.Date      = "^date.";
+    Candidates.Date      = "^date.?";
     
     Candidates.DecYear   = "^decyear";
     Candidates.JulianDay = ["^julian.*","^jday"];
@@ -148,7 +148,11 @@ end
 
 function dt = munge_dates(tb)
     vn = tb.Properties.VariableNames;
-    if any(vn == "DecYear")
+    if any(vn == "Date")
+        fmt = timestr_to_fmt(tb.Date(1));
+        dt = datetime(tb.Date, 'InputFormat',fmt);
+        return
+    elseif any(vn == "DecYear")
         disp('decyear detected')
         yelapsed = years(tb.DecYear); %duration
         dt = datetime(0,0,0) + yelapsed;
